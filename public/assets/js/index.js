@@ -1,32 +1,11 @@
 const shoppingListElement = $("#shopping-list");
 
 const getShoppingList = async () => {
-  // const response = await fetch("/api/items");
+  const response = await fetch("/api/items");
 
-  // const data = await response.json();
+  const data = await response.json();
 
-  // return data;
-
-  return {
-    items: [
-      {
-        id: "f031df58-30a8-4125-bcc7-f89e094a5a3b",
-        name: "Item 1",
-      },
-      {
-        id: "14e60076-78d8-4f4e-b453-c172721db46f",
-        name: "Item 2",
-      },
-      {
-        id: "b942b355-ccc8-4705-a294-4db793645fd6",
-        name: "Item 3",
-      },
-      {
-        id: "b838f1dc-de1a-42be-b3e5-d152aa402cf5",
-        name: "Item 4",
-      },
-    ],
-  };
+  return data;
 };
 
 const handleClick = (event) => {
