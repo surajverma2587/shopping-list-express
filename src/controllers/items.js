@@ -39,7 +39,51 @@ const createItem = (req, res) => {
   });
 };
 
+const getItem = (req, res) => {
+  // get id from req
+  const { itemId } = req.params;
+
+  // get all items from file
+  const { items } = readDataFromFile("items");
+
+  // find item by itemId
+  const item = items.find((item) => item.id === itemId);
+
+  // return response with item
+  return res.json(item);
+};
+
+const updateItem = (req, res) => {
+  // get id from req
+  const { itemId } = req.params;
+
+  // get the payload from req body
+  const { name } = req.body;
+
+  // get all items from file
+  const { items } = readDataFromFile("items");
+
+  // find item by itemId and update the item with new name
+  const updatedItems = items.map((item) => {
+    if (item.id === itemId) {
+      item.name = name;
+      return item;
+    }
+
+    return item;
+  });
+
+  writeDataToFile("items", { items: updatedItems });
+
+  // send response
+  return res.json({
+    message: "Successfully updated shopping item",
+  });
+};
+
 module.exports = {
   getItems,
   createItem,
+  getItem,
+  updateItem,
 };

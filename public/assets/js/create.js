@@ -23,7 +23,7 @@ const handleSubmit = async (event) => {
       },
     });
 
-    const data = await response.json();
+    await response.json();
 
     window.location.assign("/");
   }

@@ -13,8 +13,8 @@ const handleClick = (event) => {
 
   if (target.is('button[name="edit-btn"]')) {
     const itemId = target.attr("data-item-id");
-    console.log("Edit", itemId);
-    // redirect to /edit/itemId
+
+    window.location.assign(`/edit/${itemId}`);
   }
 
   if (target.is('button[name="delete-btn"]')) {
