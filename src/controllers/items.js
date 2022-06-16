@@ -81,9 +81,28 @@ const updateItem = (req, res) => {
   });
 };
 
+const deleteItem = (req, res) => {
+  // get id from req
+  const { itemId } = req.params;
+
+  // get all items from file
+  const { items } = readDataFromFile("items");
+
+  // remove item from file
+  const filteredItems = items.filter((item) => item.id !== itemId);
+
+  writeDataToFile("items", { items: filteredItems });
+
+  // send response
+  return res.json({
+    message: "Successfully deleted shopping item",
+  });
+};
+
 module.exports = {
   getItems,
   createItem,
   getItem,
   updateItem,
+  deleteItem,
 };

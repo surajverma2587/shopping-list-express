@@ -8,7 +8,7 @@ const getShoppingList = async () => {
   return data;
 };
 
-const handleClick = (event) => {
+const handleClick = async (event) => {
   const target = $(event.target);
 
   if (target.is('button[name="edit-btn"]')) {
@@ -19,7 +19,18 @@ const handleClick = (event) => {
 
   if (target.is('button[name="delete-btn"]')) {
     const itemId = target.attr("data-item-id");
-    console.log("Delete", itemId);
+
+    // make a DELETE request to /api/items/id
+    const response = await fetch(`/api/items/${itemId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    await response.json();
+
+    window.location.assign("/");
   }
 };
 
